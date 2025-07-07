@@ -2,7 +2,7 @@
 
 [![Live Demo](https://img.shields.io/badge/demo-online-blue?style=flat-square)](https://masarifi.kesug.com) [![License: MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
 
-> **Masarifi** is an easy to use, responsive web app for tracking budgets, incomes, and expenses—complete with data visualization, speech input, dark mode, and with an exquisite cvs import and export! Excel/Google sheets is goated.
+> **Masarifi** is an easy to use, responsive web app for tracking budgets, incomes, and expenses—complete with data visualization, speech input, dark mode, and with an exquisite cvs import and export! Excel/Google sheets is goated. It is my first code attempt so all of it is in one HTML. My appolocheese.
 
 ---
 
@@ -56,8 +56,8 @@
 - **Font Awesome** for icons
 - **Chart.js** for interactive charts
 - **Web Speech API** for voice input
-- **localStorage** for persistence
-- **Google Apps Script** for optional Google Sheets sync
+- **localStorage** for persistence and privacy
+- **Google Apps Script** for optional Google Sheets sync (experimental) 
 
 ---
 
