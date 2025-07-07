@@ -131,6 +131,52 @@
         /* Ensure all .dark .text-white is really white */
         /* Add more as needed for new UI elements */
 
+        .github-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 32px;
+            z-index: 10;
+            background-color: #333;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .github-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .coin-btn {
+            position: fixed;
+            bottom: 88px; /* 24px (bottom) + 48px (height) + 16px (gap) */
+            right: 32px;
+            z-index: 10;
+            background-color: #fbbF24; /* A gold-like color */
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .coin-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
         .dark-mode-btn {
             position: absolute;
             top: 24px;
@@ -492,7 +538,8 @@
                 <i class="fas fa-moon"></i>
             </button>
             <div class="flex flex-col items-center w-full">
-                <div id="date-time-indicator" class="text-[#15803d] text-sm font-medium mb-1 mt-2 text-center w-full" style="font-size:1.02rem; letter-spacing:0.01em; line-height:1.2;"></div>
+                <div id="date-time-indicator" class="text-[#15803d] text-sm font-medium mb-1 mt-2 text-center w-full" style="font-size:1.1rem; letter-spacing:0.01em; line-height:1.2;"></div>
+                <div id="days-left-indicator" class="text-gray-600 text-sm font-medium mb-2 text-center w-full" style="font-size:1.1rem;"></div>
                 <img src="https://iili.io/F07i2fe.png" alt="Logo" style="height:220px;max-width:320px;object-fit:contain;" class="mb-2 mx-auto" />
                 <span id="budget-header-value" class="text-6xl font-extrabold text-green-800 leading-tight text-center w-full" style="font-size:3.5rem;"> </span>
                 <span id="budget-header-label" class="text-xl font-bold text-green-700 tracking-wide uppercase text-center w-full" style="letter-spacing:2px;"> </span>
@@ -770,6 +817,12 @@
             </button>
         </div>
     </div>
+    <a href="https://github.com/Moudabir/Masarifi" target="_blank" class="github-btn">
+        <i class="fab fa-github"></i>
+    </a>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="coin-btn">
+        <i class="fas fa-coins"></i>
+    </a>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
     // --- MENU LOGIC ---
@@ -812,13 +865,23 @@
     // Date & Time Indicator Logic
     function updateDateTimeIndicator() {
         const el = document.getElementById('date-time-indicator');
-        if (!el) return;
+        const daysLeftEl = document.getElementById('days-left-indicator');
+        if (!el || !daysLeftEl) return;
+
         const now = new Date();
         // Format: jeudi 3 juillet 2025 · 12:18:30 (French, as in screenshot)
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const dateStr = now.toLocaleDateString('fr-FR', options);
         const timeStr = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
         el.textContent = `${dateStr} · ${timeStr}`;
+
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const daysLeft = daysInMonth - now.getDate();
+        const monthName = now.toLocaleString('en-US', { month: 'long' });
+
+        daysLeftEl.textContent = `Days left for ${monthName}: ${daysLeft}`;
     }
     document.addEventListener('DOMContentLoaded', function() {
         updateDateTimeIndicator();
