@@ -465,13 +465,63 @@
                 <span id="add-preset-btn-container"></span>
             </div>
         </div>
-        <!-- Collapsible Income & Budget Section (Moved Up) -->
-        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-            <button id="toggle-income-budget" class="w-full flex items-center justify-between px-2 py-2 bg-green-50 rounded-lg mb-3 focus:outline-none transition" style="cursor:pointer;">
-                <span class="text-base font-semibold">Income & Budget</span>
-                <svg id="income-budget-arrow" class="transition-transform duration-200" style="width:1.5em;height:1.5em;transform:rotate(-90deg);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        <!-- MENU BAR -->
+        <style>
+        #main-menu {
+            /* Light mode background already set inline */
+        }
+        #main-menu .menu-btn {
+            background: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 0;
+            transition: transform 0.18s cubic-bezier(.4,1.4,.6,1), box-shadow 0.18s cubic-bezier(.4,1.4,.6,1);
+            border-radius: 18px;
+        }
+        #main-menu .menu-btn img {
+            width: 108px;
+            height: 108px;
+            object-fit: contain;
+            display: block;
+            transition: box-shadow 0.18s, transform 0.18s;
+            box-shadow: 0 2px 8px #0001;
+            border-radius: 18px;
+        }
+        #main-menu .menu-btn:hover img {
+            box-shadow: 0 6px 24px #10b98133, 0 2px 8px #0002;
+            transform: scale(1.08) translateY(-4px) rotate(-2deg);
+        }
+        #main-menu .menu-btn:active img {
+            box-shadow: 0 2px 8px #10b98155;
+            transform: scale(0.96) translateY(2px) rotate(1deg);
+        }
+        /* Dark mode background for menu bar */
+        body.dark #main-menu {
+            background: #18181b !important;
+            box-shadow: 0 2px 8px #0006;
+        }
+        </style>
+        <nav id="main-menu" style="display:flex;gap:36px;align-items:center;justify-content:center;padding:18px 0;background:#f3f4f6;box-shadow:0 2px 8px #0001;">
+            <button class="menu-btn" data-section="income-budget-section">
+                <img src="https://iili.io/F0M1FNn.png" alt="Income & Budget">
             </button>
-            <div id="income-budget-content" style="display:none;">
+            <button class="menu-btn" data-section="add-expense-section">
+                <img src="https://iili.io/F0M1qoG.png" alt="Add Expense">
+            </button>
+            <button class="menu-btn" data-section="expenses-list-section">
+                <img src="https://iili.io/F0M1BVf.png" alt="Expenses List">
+            </button>
+            <button class="menu-btn" data-section="calculator-section">
+                <img src="https://iili.io/F0M13AX.png" alt="Calculator">
+            </button>
+            <button class="menu-btn" data-section="analysis-section">
+                <img src="https://iili.io/F0M1Kts.png" alt="Analysis">
+            </button>
+        </nav>
+        <!-- Income & Budget Section (Menu Controlled) -->
+        <div id="income-budget-section" class="bg-white rounded-xl shadow-lg p-6 mb-8 section-content">
+            <div id="income-budget-content">
                 <div class="flex flex-col gap-4 mb-4">
                     <div class="flex flex-col gap-4 w-full">
                         <!-- Budget Form (now above Income Form) -->
@@ -521,13 +571,9 @@
         </div>
         <!-- End Collapsible Income & Budget Section -->
 
-        <!-- Expenses Section (Moved Down) -->
-        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-            <button id="toggle-add-expense" class="w-full flex items-center justify-between px-2 py-2 bg-indigo-50 rounded-lg mb-3 focus:outline-none transition" style="cursor:pointer;">
-                <span class="text-base font-semibold">Add Expense</span>
-                <svg id="add-expense-arrow" class="transition-transform duration-200" style="width:1.5em;height:1.5em;transform:rotate(-90deg);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div id="add-expense-content" style="display:none;">
+        <!-- Add Expense Section (Menu Controlled) -->
+        <div id="add-expense-section" class="bg-white rounded-xl shadow-lg p-6 mb-8 section-content" style="display:none;">
+            <div id="add-expense-content">
                 <div class="flex flex-col md:flex-row gap-4 mb-6">
                     <div class="flex-1">
                         <label for="expense-name" class="block text-sm font-medium text-black mb-1">Expense Name</label>
@@ -579,12 +625,9 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white rounded-xl shadow-lg p-6">
-            <button id="toggle-expenses-list" class="w-full flex items-center justify-between px-2 py-2 bg-indigo-50 rounded-lg mb-3 focus:outline-none transition" style="cursor:pointer;">
-                <span class="text-base font-semibold">Your Expenses</span>
-                <svg id="expenses-list-arrow" class="transition-transform duration-200" style="width:1.5em;height:1.5em;transform:rotate(-90deg);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div id="expenses-list-content" style="display:none;">
+        <!-- Expenses List Section (Menu Controlled) -->
+        <div id="expenses-list-section" class="bg-white rounded-xl shadow-lg p-6 section-content" style="display:none;">
+            <div id="expenses-list-content">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-semibold text-black">Your Expenses</h2>
                     <div class="bg-indigo-100 text-indigo-800 dark:text-white px-4 py-2 rounded-lg font-medium">
@@ -618,13 +661,9 @@
         </div>
         <!-- End Expenses Section -->
 
-        <!-- Expandable Calculator Section -->
-        <div class="bg-white rounded-xl shadow-lg p-4 mb-8">
-            <button id="toggle-calculator" class="w-full flex items-center justify-between px-2 py-2 bg-indigo-50 rounded-lg mb-3 focus:outline-none transition" style="cursor:pointer;">
-                <span class="text-base font-semibold">Calculator</span>
-                <svg id="calculator-arrow" class="transition-transform duration-200" style="width:1.5em;height:1.5em;transform:rotate(-90deg);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div id="calculator-content" style="display:none;">
+        <!-- Calculator Section (Menu Controlled) -->
+        <div id="calculator-section" class="bg-white rounded-xl shadow-lg p-4 mb-8 section-content" style="display:none;">
+            <div id="calculator-content">
                 <div class="flex flex-col items-center gap-4">
                     <input id="calc-display" type="text" class="w-full text-2xl text-right px-4 py-2 border border-gray-300 rounded-lg mb-2 bg-gray-50" readonly />
                     <div class="grid grid-cols-4 gap-2 w-full max-w-xs">
@@ -650,12 +689,8 @@
             </div>
         </div>
     </div>
-    <!-- Expense Analysis Section (Always Visible) -->
-    <div class="bg-white rounded-xl shadow-lg p-4 mt-6">
-        <button id="toggle-expense-analysis" class="w-full flex items-center justify-between px-2 py-2 bg-indigo-50 rounded-lg mb-3 focus:outline-none transition" style="cursor:pointer;">
-            <span class="text-base font-semibold">Expense Analysis</span>
-            <svg id="expense-analysis-arrow" class="transition-transform duration-200" style="width:1.5em;height:1.5em;transform:rotate(0deg);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </button>
+    <!-- Expense Analysis Section (Menu Controlled) -->
+    <div id="analysis-section" class="bg-white rounded-xl shadow-lg p-4 mt-6 section-content" style="display:none;">
         <div id="graph-section-content" style="display: flex; flex-direction: column; align-items: center;">
             <div class="grid md:grid-cols-2 gap-2 mb-4 w-full max-w-3xl mx-auto" style="justify-content:center;">
                 <div class="flex flex-col items-center w-full max-w-[350px] mx-auto">
@@ -693,6 +728,30 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+    // --- MENU LOGIC ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const sectionIds = [
+            'income-budget-section',
+            'add-expense-section',
+            'expenses-list-section',
+            'calculator-section',
+            'analysis-section'
+        ];
+        function showSection(sectionId) {
+            sectionIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = (id === sectionId) ? '' : 'none';
+            });
+        }
+        // Default: show first section
+        showSection(sectionIds[0]);
+        // Menu button click
+        document.querySelectorAll('.menu-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                showSection(this.getAttribute('data-section'));
+            });
+        });
+    });
     // Date & Time Indicator Logic
     function updateDateTimeIndicator() {
         const el = document.getElementById('date-time-indicator');
