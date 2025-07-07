@@ -881,7 +881,7 @@
         const daysLeft = daysInMonth - now.getDate();
         const monthName = now.toLocaleString('en-US', { month: 'long' });
 
-        daysLeftEl.textContent = `Days left for ${monthName}: ${daysLeft}`;
+        daysLeftEl.textContent = `Days left until Salary: ${daysLeft}`;
     }
     document.addEventListener('DOMContentLoaded', function() {
         updateDateTimeIndicator();
