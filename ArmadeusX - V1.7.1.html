@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Armadeus</title>
+<link rel="icon" href="https://iili.io/F07i2fe.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -450,7 +451,7 @@
             </button>
             <div class="flex flex-col items-center w-full">
                 <div id="date-time-indicator" class="text-[#15803d] text-sm font-medium mb-1 mt-2 text-center w-full" style="font-size:1.02rem; letter-spacing:0.01em; line-height:1.2;"></div>
-                <img src="../Assets/Logo.png" alt="Logo" style="height:220px;max-width:320px;object-fit:contain;" class="mb-2 mx-auto" />
+                <img src="https://iili.io/F07i2fe.png" alt="Logo" style="height:220px;max-width:320px;object-fit:contain;" class="mb-2 mx-auto" />
                 <span id="budget-header-value" class="text-6xl font-extrabold text-green-800 leading-tight text-center w-full" style="font-size:3.5rem;"> </span>
                 <span id="budget-header-label" class="text-xl font-bold text-green-700 tracking-wide uppercase text-center w-full" style="letter-spacing:2px;"> </span>
                 <!-- Indicators Row -->
@@ -606,35 +607,6 @@
             </div>
         </div>
         <!-- End Expenses Section -->
-    // Collapsible Income & Budget logic
-    document.addEventListener('DOMContentLoaded', function() {
-        var toggleBtn = document.getElementById('toggle-income-budget');
-        var content = document.getElementById('income-budget-content');
-        var arrow = document.getElementById('income-budget-arrow');
-        if (toggleBtn && content && arrow) {
-            // Start collapsed on mobile, open on desktop
-            function setInitialCollapse() {
-                if (window.innerWidth < 768) {
-                    content.style.display = 'none';
-                    arrow.style.transform = 'rotate(-90deg)';
-                } else {
-                    content.style.display = 'block';
-                    arrow.style.transform = 'rotate(0deg)';
-                }
-            }
-            setInitialCollapse();
-            window.addEventListener('resize', setInitialCollapse);
-            toggleBtn.addEventListener('click', function() {
-                if (content.style.display === 'none') {
-                    content.style.display = 'block';
-                    arrow.style.transform = 'rotate(0deg)';
-                } else {
-                    content.style.display = 'none';
-                    arrow.style.transform = 'rotate(-90deg)';
-                }
-            });
-        }
-    });
 
         <!-- Expandable Calculator Section -->
         <div class="bg-white rounded-xl shadow-lg p-4 mb-8">
