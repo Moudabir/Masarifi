@@ -130,6 +130,47 @@
         .dark .text-white { color: #fff !important; }
         /* Ensure all .dark .text-white is really white */
         /* Add more as needed for new UI elements */
+
+        .dark-mode-btn {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            z-index: 10;
+            background-color: #4a5568;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .dark-mode-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode-btn:active {
+            transform: scale(0.95);
+        }
+
+        body.dark .dark-mode-btn {
+            background-color: #2d3748;
+        }
+
+        .dark-mode-btn .fa-sun {
+            display: none;
+        }
+        body.dark .dark-mode-btn .fa-sun {
+            display: inline-block;
+        }
+        body.dark .dark-mode-btn .fa-moon {
+            display: none;
+        }
     </style>
 </head>
 <body id="main-body" class="bg-gray-50 min-h-screen">
@@ -445,9 +486,10 @@
     })();
     </script>
         <header class="mb-10" style="position:relative;">
-            <!-- Dark mode button absolutely positioned top right -->
-            <button id="dark-mode-toggle" class="bg-gray-700 dark:bg-gray-800 text-white px-3 py-2 rounded-xl shadow-lg transition duration-300 flex items-center gap-2 text-base" style="position:absolute;top:24px;right:32px;z-index:10;font-size:0.98rem;min-width:80px;min-height:36px;display:flex;align-items:center;justify-content:center;">
-                <i class="fas fa-moon" style="font-size:1.05em;"></i> <span id="dark-mode-label">Dark Mode</span>
+            <!-- Dark mode button -->
+            <button id="dark-mode-toggle" class="dark-mode-btn">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
             </button>
             <div class="flex flex-col items-center w-full">
                 <div id="date-time-indicator" class="text-[#15803d] text-sm font-medium mb-1 mt-2 text-center w-full" style="font-size:1.02rem; letter-spacing:0.01em; line-height:1.2;"></div>
@@ -1151,10 +1193,11 @@
             const budgetHeaderLabel = document.getElementById('budget-header-label');
             const headerIndicators = document.getElementById('header-indicators');
             
-            let available = (budget || totalIncome) - totalExpenses;
-            let dailyAllowance = totalIncome / daysLeft;
+            const effectiveBudget = budget || totalIncome;
+            let available = effectiveBudget - totalExpenses;
+            let dailyAllowance = available / daysLeft;
 
-            if (!budget && totalIncome === 0) {
+            if (effectiveBudget === 0) {
                 info.innerHTML = '<span class="text-gray-700">No monthly budget or income set.</span>';
                 if (budgetHeaderValue) budgetHeaderValue.textContent = '';
                 if (budgetHeaderLabel) budgetHeaderLabel.textContent = '';
@@ -1164,20 +1207,31 @@
 
             budgetHeaderValue.textContent = `${dailyAllowance.toFixed(2)} DH`;
             budgetHeaderLabel.textContent = 'TO SPEND PER DAY';
-            budgetHeaderValue.className = 'text-5xl font-extrabold text-green-800 leading-tight';
-            budgetHeaderLabel.className = 'text-lg font-bold text-green-700 tracking-wide';
+            
+            let feedbackText = '';
+            if (dailyAllowance > 0) {
+                feedbackText = `You are on track. You can spend up to <b>${dailyAllowance.toFixed(2)} DH</b> per day for the rest of the month.`;
+                budgetHeaderValue.className = 'text-5xl font-extrabold text-green-800 leading-tight';
+                budgetHeaderLabel.className = 'text-lg font-bold text-green-700 tracking-wide';
+            } else {
+                feedbackText = `You have overspent your budget. You are <b>${Math.abs(available).toFixed(2)} DH</b> over.`;
+                budgetHeaderValue.className = 'text-5xl font-extrabold text-red-700 leading-tight';
+                budgetHeaderLabel.className = 'text-lg font-bold text-red-700 tracking-wide';
+            }
+            info.innerHTML = `<span class='text-gray-600 dark:text-gray-400'>${feedbackText}</span>`;
+
 
             if (headerIndicators) {
                 headerIndicators.innerHTML = '';
                 const badgeClass = 'inline-block bg-gray-400 bg-opacity-60 text-white text-base font-semibold rounded-full px-5 py-2 shadow-sm';
                 headerIndicators.innerHTML =
-                    `<span class="${badgeClass}">Budget: ${(budget || totalIncome).toFixed(2)} DH</span>` +
+                    `<span class="${badgeClass}">Budget: ${effectiveBudget.toFixed(2)} DH</span>` +
                     `<span class="${badgeClass}">Expenses: ${totalExpenses.toFixed(2)} DH</span>` +
                     `<span class="${badgeClass}">Remaining: ${available.toFixed(2)} DH</span>`;
             }
 
             if (window.renderBudgetVsExpensesChart) {
-                window.renderBudgetVsExpensesChart(budget || totalIncome, totalIncome, totalExpenses);
+                window.renderBudgetVsExpensesChart(effectiveBudget, totalIncome, totalExpenses);
             }
         }
 
@@ -1186,29 +1240,24 @@
             updateBudgetInfo();
         });
         // Dark mode logic
-        function setDarkMode(enabled) {
-            const body = document.getElementById('main-body');
-            if (enabled) {
-                body.classList.add('dark');
-                localStorage.setItem('darkMode', 'true');
-                document.getElementById('dark-mode-label').textContent = 'Light Mode';
-                document.getElementById('dark-mode-toggle').innerHTML = '<i class="fas fa-sun"></i> <span id="dark-mode-label">Light Mode</span>';
-            } else {
-                body.classList.remove('dark');
-                localStorage.setItem('darkMode', 'false');
-                document.getElementById('dark-mode-label').textContent = 'Dark Mode';
-                document.getElementById('dark-mode-toggle').innerHTML = '<i class="fas fa-moon"></i> <span id="dark-mode-label">Dark Mode</span>';
-            }
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtn = document.getElementById('dark-mode-toggle');
+            const body = document.getElementById('main-body');
+
+            function setDarkMode(enabled) {
+                body.classList.toggle('dark', enabled);
+                localStorage.setItem('darkMode', enabled);
+            }
+
             // Initialize dark mode from localStorage
             const darkModePref = localStorage.getItem('darkMode');
             setDarkMode(darkModePref === 'true');
-            document.getElementById('dark-mode-toggle').addEventListener('click', function() {
-                const isDark = document.getElementById('main-body').classList.contains('dark');
+
+            toggleBtn.addEventListener('click', function() {
+                const isDark = body.classList.contains('dark');
                 setDarkMode(!isDark);
             });
+        });
             // Delete all expenses
             function deleteAllExpenses() {
                 if (expenses.length === 0) {
@@ -1892,7 +1941,6 @@
             window.deleteExpense = deleteExpense;
             // Initial render
             renderExpenses();
-        });
     </script>
 </body>
 </html>
