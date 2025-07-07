@@ -141,8 +141,4 @@ git commit -m "feat: add awesome feature"
 git push origin feature/my-feature
 ```
 
-Please follow the existing code style and document new features.
-
-
-```
-```
+Please follow the existing code style and document new features, or i'll come to your house and fork you instead.
