@@ -7,6 +7,18 @@
 
 ---
 
+## Visuals
+
+![2](https://iili.io/F0YuLB4.png)
+
+![3](https://iili.io/F0YYlUl.png)
+
+![4](https://iili.io/F0Yadg4.png)
+
+![5](https://iili.io/F0YcV6b.png)
+
+---
+
 ## Table of Contents
 1. [Features](#features)
 2. [Technologies](#technologies)
