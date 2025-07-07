@@ -467,8 +467,21 @@
         </div>
         <!-- MENU BAR -->
         <style>
+        /* Responsive and visually relaxing menu bar for mobile */
         #main-menu {
-            /* Light mode background already set inline */
+            flex-wrap: wrap;
+            gap: 18px;
+            padding: 12px 0;
+        }
+        @media (max-width: 600px) {
+            #main-menu {
+                gap: 8vw;
+                padding: 8px 0 4px 0;
+            }
+            #main-menu .menu-btn img {
+                width: 64px;
+                height: 64px;
+            }
         }
         #main-menu .menu-btn {
             background: none;
@@ -476,17 +489,19 @@
             outline: none;
             cursor: pointer;
             padding: 0;
+            margin: 0 2px;
             transition: transform 0.18s cubic-bezier(.4,1.4,.6,1), box-shadow 0.18s cubic-bezier(.4,1.4,.6,1);
             border-radius: 18px;
         }
         #main-menu .menu-btn img {
-            width: 108px;
-            height: 108px;
+            width: 96px;
+            height: 96px;
             object-fit: contain;
             display: block;
             transition: box-shadow 0.18s, transform 0.18s;
             box-shadow: 0 2px 8px #0001;
             border-radius: 18px;
+            background: #f3f4f6;
         }
         #main-menu .menu-btn:hover img {
             box-shadow: 0 6px 24px #10b98133, 0 2px 8px #0002;
@@ -496,10 +511,21 @@
             box-shadow: 0 2px 8px #10b98155;
             transform: scale(0.96) translateY(2px) rotate(1deg);
         }
-        /* Dark mode background for menu bar */
         body.dark #main-menu {
             background: #18181b !important;
             box-shadow: 0 2px 8px #0006;
+        }
+        body.dark #main-menu .menu-btn img {
+            background: #23232a;
+        }
+        /* Relaxing shadow and spacing for mobile */
+        #main-menu .menu-btn img {
+            box-shadow: 0 2px 12px #0002;
+        }
+        @media (max-width: 600px) {
+            #main-menu .menu-btn {
+                margin: 0 1vw;
+            }
         }
         </style>
         <nav id="main-menu" style="display:flex;gap:36px;align-items:center;justify-content:center;padding:18px 0;background:#f3f4f6;box-shadow:0 2px 8px #0001;">
