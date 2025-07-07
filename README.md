@@ -2,7 +2,7 @@
 
 An intuitive, responsive web application for tracking budgets, incomes, and expenses, complete with data visualization, speech input, dark mode, and AI-driven analysis.
 
-Table of Contents
+## Table of Contents
 
 Features
 
@@ -28,9 +28,11 @@ Contributing
 
 License
 
-Features
+---
 
-Budget & Income Management
+## Features
+
+- **Budget & Income Management**
 
 Set weekly budgets, add incomes with descriptions and dates.
 
