@@ -1,4 +1,4 @@
-Masarifi
+# Masarifi
 
 An intuitive, responsive web application for tracking budgets, incomes, and expenses, complete with data visualization, speech input, dark mode, and AI-driven analysis.
 
