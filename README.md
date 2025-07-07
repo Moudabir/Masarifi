@@ -1,5 +1,4 @@
 # Masarifi
-https://freeimage.host/i/F07i2fe
 [![Live Demo](https://img.shields.io/badge/demo-online-blue?style=flat-square)](https://masarifi.kesug.com) [![License: MIT]
 
 
