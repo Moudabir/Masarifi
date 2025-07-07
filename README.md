@@ -2,7 +2,7 @@
 
 [![Live Demo](https://img.shields.io/badge/demo-online-blue?style=flat-square)](https://masarifi.kesug.com) [![License: MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
 
-> **Masarifi** is an intuitive, responsive web app for tracking budgets, incomes, and expenses—complete with data visualization, speech input, dark mode, and AI-driven analysis.
+> **Masarifi** is an easy to use, responsive web app for tracking budgets, incomes, and expenses—complete with data visualization, speech input, dark mode, and with an exquisite cvs import and export! Excel/Google sheets is goated.
 
 ---
 
