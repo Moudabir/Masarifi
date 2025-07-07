@@ -1,170 +1,148 @@
+````markdown
 # Masarifi
 
-An intuitive, responsive web application for tracking budgets, incomes, and expenses, complete with data visualization, speech input, dark mode, and AI-driven analysis.
+[![Live Demo](https://img.shields.io/badge/demo-online-blue?style=flat-square)](https://masarifi.kesug.com) [![License: MIT](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
+
+> **Masarifi** is an intuitive, responsive web app for tracking budgets, incomes, and expenses—complete with data visualization, speech input, dark mode, and AI-driven analysis.
+
+---
 
 ## Table of Contents
-
-Features
-
-Technologies
-
-Demo
-
-Getting Started
-
-Prerequisites
-
-Installation
-
-Running Locally
-
-Usage
-
-Customization
-
-Data Synchronization
-
-Contributing
-
-License
+1. [Features](#features)
+2. [Technologies](#technologies)
+3. [Demo](#demo)
+4. [Getting Started](#getting-started)
+   - [Prerequisites](#prerequisites)
+   - [Installation](#installation)
+   - [Running Locally](#running-locally)
+5. [Usage](#usage)
+6. [Customization](#customization)
+7. [Data Synchronization](#data-synchronization)
+8. [Contributing](#contributing)
+9. [License](#license)
 
 ---
 
 ## Features
 
 - **Budget & Income Management**
+  - Set weekly budgets and log income (salary, gifts, etc.) with descriptions and dates.
+  - Visual status badges: _On Track_, _Saving_, or _Overspending_.
+- **Expense Tracking**
+  - Add expenses with **name**, **description**, **category**, **amount**, and **date**.
+  - Quick-add presets for frequent items.
+  - Speech-to-text input for hands-free entry.
+- **Data Visualization**
+  - Charts powered by Chart.js:
+    - Expenses by weekday (bar)
+    - Category breakdown (doughnut)
+    - Income over time (line)
+    - Budget vs. Income vs. Expenses (bar)
+- **Dark Mode**
+  - Toggle light/dark themes; preference saved in **localStorage**.
+- **CSV Import/Export**
+  - Export budgets, incomes, and expenses.
+  - Import CSV to restore or migrate data.
+- **AI-Driven Budget Diagnosis**
+  - Built-in rule-based analysis or optional AI assistant for personalized feedback.
+- **Responsive Design**
+  - Mobile-first collapsible sections and smooth animations.
 
-Set weekly budgets, add incomes with descriptions and dates.
+---
 
-Visual indicators for budget status: On track, saving, or overspending.
+## Technologies
 
-Expense Tracking
+- **Vanilla JavaScript** for core logic & UI behavior
+- **Tailwind CSS** for utility-first styling
+- **Font Awesome** for icons
+- **Chart.js** for interactive charts
+- **Web Speech API** for voice input
+- **localStorage** for persistence
+- **Google Apps Script** for optional Google Sheets sync
 
-Add expenses with name, description, category, amount, and date.
+---
 
-Quick-add presets for common expense types.
+## Demo
 
-Speech-to-text input for hands-free entry.
+Check out the live demo: [masarifi.kesug.com](https://masarifi.kesug.com)
 
-Data Visualization
+---
 
-Interactive charts (Chart.js) showing:
+## Getting Started
 
-Expenses by weekday (bar chart)
+### Prerequisites
 
-Expense category breakdown (doughnut chart)
+- A modern browser: Chrome, Firefox, or Edge
+- Internet connection (to load CDN assets)
 
-Income over time (line chart)
+### Installation
 
-Budget vs. Income vs. Expenses (bar chart)
+```bash
+# Clone the repo
+git clone https://github.com/Moudabir/Masarifi.git
+cd Masarifi
+````
 
-Dark Mode
+> **Note:** No build step—pure HTML/CSS/JS.
 
-Toggle between light and dark themes; preference persisted in localStorage.
+### Running Locally
 
-CSV Import/Export
-
-Export budgets, incomes, and expenses to CSV.
-
-Import CSV to restore or migrate data.
-
-AI-Driven Budget Diagnosis
-
-Built-in rule-based analysis or optional AI assistant for personalized feedback.
-
-Responsive Design
-
-Mobile-friendly collapsible sections and smooth animations.
-
-Technologies
-
-Vanilla JavaScript for core logic and UI behavior
-
-Tailwind CSS for utility-first styling
-
-Font Awesome for icons
-
-Chart.js for data visualization
-
-Web Speech API for speech recognition
-
-LocalStorage for data persistence
-
-Google Apps Script endpoint for optional Google Sheets sync
-
-Demo
-
-A live demo is available at: masarifi.kesug.com
-
-Getting Started
-
-Prerequisites
-
-Modern web browser (Chrome, Firefox, Edge)
-
-Internet connection to load CDN assets (Tailwind, Font Awesome, Chart.js)
-
-Installation
-
-Clone the repository
-
-git clone https://github.com/Moudabir/Masarifi
-cd armadeus
-
-Open in VS Code (optional):
-
-code .
-
-No build step required—the app is pure HTML/CSS/JS.
-
-Running Locally
-
-Simply open index.html in your browser:
-
+```bash
+# Option 1: Open directly
 open index.html
 
-Or serve via a simple HTTP server:
-
+# Option 2: Serve via HTTP server
 npx http-server .
+```
 
-Usage
+---
 
-Set a Weekly Budget in the Income & Budget section.
+## Usage
 
-Add Income entries for salary, gifts, etc.
+1. Set Weekly Budget in the Income & Budget section.
+2. Log Income entries with amount, description, and date.
+3. Add Expenses by typing or using the microphone button.
+4. Use Presets to quickly log recurring costs.
+5. Explore charts under Expense Analysis for insights.
+6. Export/Import CSV to back up or restore data.
+7. Sync all data to Google Sheets via the Sync button (optional).
 
-Add Expenses by typing or using speech input.
+---
 
-Use Presets to quickly log frequent purchases.
+## Customization
 
-View Charts under Expense Analysis for insights.
+* **Expense Presets:** Click the + in the preset bar to add or edit.
+* **Categories:** Modify `<select>` options in the HTML.
+* **Styling:** Tweak Tailwind classes or dark-mode CSS in `index.html`.
 
-Export/Import CSV to backup or restore data.
+---
 
-Sync All Data to Google Sheets (optional).
+## Data Synchronization
 
-Customization
+Optional integration with Google Sheets via Apps Script.
+Edit the `sendDataToGoogleSheets` endpoint URL in `index.html` to point to your script.
 
-Expense Presets: Modify or add via the + button in the preset bar.
+---
 
-Categories: Edit category options in the <select> elements.
+## Contributing
 
-Theme: Customize Tailwind classes or dark-mode CSS in <style>.
+```bash
+# Fork the repo
+# Create a branch
+git checkout -b feature/my-feature
+# Commit changes
+git commit -m "feat: add awesome feature"
+# Push and open PR
+git push origin feature/my-feature
+```
 
-Data Synchronization
+Please follow the existing code style and document new features.
 
-The app can optionally sync to a Google Sheets spreadsheet via an Apps Script endpoint. Configure the script URL in the sendDataToGoogleSheets function in index.html.
+---
 
-Contributing
+## License
 
-Fork the repository
+This project is licensed under **MIT**. See the [LICENSE](LICENSE) file for details.
 
-Create a feature branch (git checkout -b feature/my-feature)
-
-Commit your changes (git commit -m "feat: add ...")
-
-Push to your branch (git push origin feature/my-feature)
-
-Open a Pull Request
-
-Please ensure code is well-documented and follows existing style.
+```
+```
