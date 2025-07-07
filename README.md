@@ -116,13 +116,6 @@ npx http-server .
 
 ---
 
-## Data Synchronization
-
-Optional integration with Google Sheets via Apps Script.
-Edit the `sendDataToGoogleSheets` endpoint URL in `index.html` to point to your script.
-
----
-
 ## Contributing
 
 ```bash
@@ -137,11 +130,6 @@ git push origin feature/my-feature
 
 Please follow the existing code style and document new features.
 
----
-
-## License
-
-This project is licensed under **MIT**. See the [LICENSE](LICENSE) file for details.
 
 ```
 ```
