@@ -130,6 +130,93 @@
         .dark .text-white { color: #fff !important; }
         /* Ensure all .dark .text-white is really white */
         /* Add more as needed for new UI elements */
+
+        .github-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 32px;
+            z-index: 10;
+            background-color: #333;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .github-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .coin-btn {
+            position: fixed;
+            bottom: 88px; /* 24px (bottom) + 48px (height) + 16px (gap) */
+            right: 32px;
+            z-index: 10;
+            background-color: #fbbF24; /* A gold-like color */
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .coin-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode-btn {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            z-index: 10;
+            background-color: #4a5568;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .dark-mode-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode-btn:active {
+            transform: scale(0.95);
+        }
+
+        body.dark .dark-mode-btn {
+            background-color: #2d3748;
+        }
+
+        .dark-mode-btn .fa-sun {
+            display: none;
+        }
+        body.dark .dark-mode-btn .fa-sun {
+            display: inline-block;
+        }
+        body.dark .dark-mode-btn .fa-moon {
+            display: none;
+        }
     </style>
 </head>
 <body id="main-body" class="bg-gray-50 min-h-screen">
@@ -445,12 +532,14 @@
     })();
     </script>
         <header class="mb-10" style="position:relative;">
-            <!-- Dark mode button absolutely positioned top right -->
-            <button id="dark-mode-toggle" class="bg-gray-700 dark:bg-gray-800 text-white px-3 py-2 rounded-xl shadow-lg transition duration-300 flex items-center gap-2 text-base" style="position:absolute;top:24px;right:32px;z-index:10;font-size:0.98rem;min-width:80px;min-height:36px;display:flex;align-items:center;justify-content:center;">
-                <i class="fas fa-moon" style="font-size:1.05em;"></i> <span id="dark-mode-label">Dark Mode</span>
+            <!-- Dark mode button -->
+            <button id="dark-mode-toggle" class="dark-mode-btn">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
             </button>
             <div class="flex flex-col items-center w-full">
-                <div id="date-time-indicator" class="text-[#15803d] text-sm font-medium mb-1 mt-2 text-center w-full" style="font-size:1.02rem; letter-spacing:0.01em; line-height:1.2;"></div>
+                <div id="date-time-indicator" class="text-[#15803d] text-sm font-medium mb-1 mt-2 text-center w-full" style="font-size:1.1rem; letter-spacing:0.01em; line-height:1.2;"></div>
+                <div id="days-left-indicator" class="text-gray-600 text-sm font-medium mb-2 text-center w-full" style="font-size:1.1rem;"></div>
                 <img src="https://iili.io/F07i2fe.png" alt="Logo" style="height:220px;max-width:320px;object-fit:contain;" class="mb-2 mx-auto" />
                 <span id="budget-header-value" class="text-6xl font-extrabold text-green-800 leading-tight text-center w-full" style="font-size:3.5rem;"> </span>
                 <span id="budget-header-label" class="text-xl font-bold text-green-700 tracking-wide uppercase text-center w-full" style="letter-spacing:2px;"> </span>
@@ -465,31 +554,88 @@
                 <span id="add-preset-btn-container"></span>
             </div>
         </div>
-        <!-- Collapsible Income & Budget Section (Moved Up) -->
-        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-            <button id="toggle-income-budget" class="w-full flex items-center justify-between px-2 py-2 bg-green-50 rounded-lg mb-3 focus:outline-none transition" style="cursor:pointer;">
-                <span class="text-base font-semibold">Income & Budget</span>
-                <svg id="income-budget-arrow" class="transition-transform duration-200" style="width:1.5em;height:1.5em;transform:rotate(-90deg);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        <!-- MENU BAR -->
+        <style>
+        /* Responsive and visually relaxing menu bar for mobile */
+        #main-menu {
+            flex-wrap: wrap;
+            gap: 18px;
+            padding: 12px 0;
+        }
+        @media (max-width: 600px) {
+            #main-menu {
+                gap: 8vw;
+                padding: 8px 0 4px 0;
+            }
+            #main-menu .menu-btn img {
+                width: 64px;
+                height: 64px;
+            }
+        }
+        #main-menu .menu-btn {
+            background: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 0;
+            margin: 0 2px;
+            transition: transform 0.18s cubic-bezier(.4,1.4,.6,1), box-shadow 0.18s cubic-bezier(.4,1.4,.6,1);
+            border-radius: 18px;
+        }
+        #main-menu .menu-btn img {
+            width: 96px;
+            height: 96px;
+            object-fit: contain;
+            display: block;
+            transition: box-shadow 0.18s, transform 0.18s;
+            box-shadow: 0 2px 8px #0001;
+            border-radius: 18px;
+            background: #f3f4f6;
+        }
+        #main-menu .menu-btn:hover img {
+            box-shadow: 0 6px 24px #10b98133, 0 2px 8px #0002;
+            transform: scale(1.08) translateY(-4px) rotate(-2deg);
+        }
+        #main-menu .menu-btn:active img {
+            box-shadow: 0 2px 8px #10b98155;
+            transform: scale(0.96) translateY(2px) rotate(1deg);
+        }
+        body.dark #main-menu {
+            background: #18181b !important;
+            box-shadow: 0 2px 8px #0006;
+        }
+        body.dark #main-menu .menu-btn img {
+            background: #23232a;
+        }
+        /* Relaxing shadow and spacing for mobile */
+        #main-menu .menu-btn img {
+            box-shadow: 0 2px 12px #0002;
+        }
+        @media (max-width: 600px) {
+            #main-menu .menu-btn {
+                margin: 0 1vw;
+            }
+        }
+        </style>
+        <nav id="main-menu" style="display:flex;gap:36px;align-items:center;justify-content:center;padding:18px 0;background:#f3f4f6;box-shadow:0 2px 8px #0001;">
+            <button class="menu-btn" data-section="income-budget-section">
+                <img src="https://iili.io/F0M1FNn.png" alt="Income & Budget">
             </button>
-            <div id="income-budget-content" style="display:none;">
+            <button class="menu-btn" data-section="expenses-section">
+                <img src="https://iili.io/F0M1BVf.png" alt="Expenses">
+            </button>
+            <button class="menu-btn" data-section="calculator-section">
+                <img src="https://iili.io/F0M13AX.png" alt="Calculator">
+            </button>
+            <button class="menu-btn" data-section="analysis-section">
+                <img src="https://iili.io/F0M1Kts.png" alt="Analysis">
+            </button>
+        </nav>
+        <!-- Income & Budget Section (Menu Controlled) -->
+        <div id="income-budget-section" class="bg-white rounded-xl shadow-lg p-6 mb-8 section-content">
+            <div id="income-budget-content">
                 <div class="flex flex-col gap-4 mb-4">
                     <div class="flex flex-col gap-4 w-full">
-                        <!-- Budget Form (now above Income Form) -->
-                        <form id="budget-form" class="flex flex-col gap-2 items-start md:items-end justify-end md:w-72 mb-2" style="min-width:220px;">
-                            <label class="block text-sm font-medium text-black mb-1 md:text-right md:mb-0 w-full">Set Budget</label>
-                            <div class="flex gap-2 w-full">
-                                <input type="number" id="budget-amount" placeholder="Monthly Budget (DH)" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2 rounded-lg flex items-center gap-2">
-                                    <i class="fas fa-save"></i>
-                                </button>
-                            </div>
-                            <div id="budget-display" class="flex items-center gap-2 mt-2 md:justify-end" style="display:none;">
-                                <span id="budget-value" class="text-lg font-semibold text-green-700"></span>
-                                <button id="edit-budget" type="button" class="ml-2 text-gray-500 hover:text-indigo-600 bg-gray-100 rounded-full p-1" title="Edit budget">
-                                    <i class="fas fa-pen"></i>
-                                </button>
-                            </div>
-                        </form>
                         <!-- Income Form (now below Budget Form) -->
                         <form id="income-form" class="flex-1 flex flex-col gap-2">
                             <label class="block text-sm font-medium text-black mb-1">Add Income</label>
@@ -507,9 +653,6 @@
                         <button id="delete-all-income" class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg flex items-center gap-2 shadow-sm">
                             <i class="fas fa-trash"></i> Delete All Income
                         </button>
-                        <button id="delete-budget" class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg flex items-center gap-2 shadow-sm">
-                            <i class="fas fa-trash"></i> Delete Budget
-                        </button>
                     </div>
                 </div>
                 <div class="grid md:grid-cols-3 gap-4 mb-2">
@@ -521,13 +664,9 @@
         </div>
         <!-- End Collapsible Income & Budget Section -->
 
-        <!-- Expenses Section (Moved Down) -->
-        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
-            <button id="toggle-add-expense" class="w-full flex items-center justify-between px-2 py-2 bg-indigo-50 rounded-lg mb-3 focus:outline-none transition" style="cursor:pointer;">
-                <span class="text-base font-semibold">Add Expense</span>
-                <svg id="add-expense-arrow" class="transition-transform duration-200" style="width:1.5em;height:1.5em;transform:rotate(-90deg);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div id="add-expense-content" style="display:none;">
+        <!-- Expenses Section (Menu Controlled) -->
+        <div id="expenses-section" class="bg-white rounded-xl shadow-lg p-6 mb-8 section-content" style="display:none;">
+            <div id="add-expense-content">
                 <div class="flex flex-col md:flex-row gap-4 mb-6">
                     <div class="flex-1">
                         <label for="expense-name" class="block text-sm font-medium text-black mb-1">Expense Name</label>
@@ -578,13 +717,8 @@
                     </button>
                 </div>
             </div>
-        </div>
-        <div class="bg-white rounded-xl shadow-lg p-6">
-            <button id="toggle-expenses-list" class="w-full flex items-center justify-between px-2 py-2 bg-indigo-50 rounded-lg mb-3 focus:outline-none transition" style="cursor:pointer;">
-                <span class="text-base font-semibold">Your Expenses</span>
-                <svg id="expenses-list-arrow" class="transition-transform duration-200" style="width:1.5em;height:1.5em;transform:rotate(-90deg);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div id="expenses-list-content" style="display:none;">
+            <hr class="my-6 border-gray-300">
+            <div id="expenses-list-content">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-semibold text-black">Your Expenses</h2>
                     <div class="bg-indigo-100 text-indigo-800 dark:text-white px-4 py-2 rounded-lg font-medium">
@@ -618,13 +752,9 @@
         </div>
         <!-- End Expenses Section -->
 
-        <!-- Expandable Calculator Section -->
-        <div class="bg-white rounded-xl shadow-lg p-4 mb-8">
-            <button id="toggle-calculator" class="w-full flex items-center justify-between px-2 py-2 bg-indigo-50 rounded-lg mb-3 focus:outline-none transition" style="cursor:pointer;">
-                <span class="text-base font-semibold">Calculator</span>
-                <svg id="calculator-arrow" class="transition-transform duration-200" style="width:1.5em;height:1.5em;transform:rotate(-90deg);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div id="calculator-content" style="display:none;">
+        <!-- Calculator Section (Menu Controlled) -->
+        <div id="calculator-section" class="bg-white rounded-xl shadow-lg p-4 mb-8 section-content" style="display:none;">
+            <div id="calculator-content">
                 <div class="flex flex-col items-center gap-4">
                     <input id="calc-display" type="text" class="w-full text-2xl text-right px-4 py-2 border border-gray-300 rounded-lg mb-2 bg-gray-50" readonly />
                     <div class="grid grid-cols-4 gap-2 w-full max-w-xs">
@@ -650,12 +780,8 @@
             </div>
         </div>
     </div>
-    <!-- Expense Analysis Section (Always Visible) -->
-    <div class="bg-white rounded-xl shadow-lg p-4 mt-6">
-        <button id="toggle-expense-analysis" class="w-full flex items-center justify-between px-2 py-2 bg-indigo-50 rounded-lg mb-3 focus:outline-none transition" style="cursor:pointer;">
-            <span class="text-base font-semibold">Expense Analysis</span>
-            <svg id="expense-analysis-arrow" class="transition-transform duration-200" style="width:1.5em;height:1.5em;transform:rotate(0deg);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </button>
+    <!-- Expense Analysis Section (Menu Controlled) -->
+    <div id="analysis-section" class="bg-white rounded-xl shadow-lg p-6 mb-8 section-content" style="display: none;">
         <div id="graph-section-content" style="display: flex; flex-direction: column; align-items: center;">
             <div class="grid md:grid-cols-2 gap-2 mb-4 w-full max-w-3xl mx-auto" style="justify-content:center;">
                 <div class="flex flex-col items-center w-full max-w-[350px] mx-auto">
@@ -691,18 +817,71 @@
             </button>
         </div>
     </div>
+    <a href="https://github.com/Moudabir/Masarifi" target="_blank" class="github-btn">
+        <i class="fab fa-github"></i>
+    </a>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="coin-btn">
+        <i class="fas fa-coins"></i>
+    </a>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+    // --- MENU LOGIC ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const sectionIds = [
+            'income-budget-section',
+            'expenses-section',
+            'calculator-section',
+            'analysis-section'
+        ];
+        function showSection(sectionId) {
+            sectionIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = (id === sectionId) ? '' : 'none';
+            });
+        }
+        // Default: show first section
+        showSection(sectionIds[0]);
+        // Menu button click
+        document.querySelectorAll('.menu-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const sectionName = this.getAttribute('data-section');
+                showSection(sectionName);
+            });
+        });
+
+        // Ensure charts are rendered when the analysis section is shown
+        const analysisSection = document.getElementById('analysis-section');
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'style' && analysisSection.style.display !== 'none') {
+                    if (typeof renderExpenseCharts === 'function') {
+                        renderExpenseCharts();
+                    }
+                }
+            });
+        });
+        observer.observe(analysisSection, { attributes: true });
+    });
     // Date & Time Indicator Logic
     function updateDateTimeIndicator() {
         const el = document.getElementById('date-time-indicator');
-        if (!el) return;
+        const daysLeftEl = document.getElementById('days-left-indicator');
+        if (!el || !daysLeftEl) return;
+
         const now = new Date();
         // Format: jeudi 3 juillet 2025 · 12:18:30 (French, as in screenshot)
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const dateStr = now.toLocaleDateString('fr-FR', options);
         const timeStr = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
         el.textContent = `${dateStr} · ${timeStr}`;
+
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const daysLeft = daysInMonth - now.getDate();
+        const monthName = now.toLocaleString('en-US', { month: 'long' });
+
+        daysLeftEl.textContent = `Days left until Salary: ${daysLeft}`;
     }
     document.addEventListener('DOMContentLoaded', function() {
         updateDateTimeIndicator();
@@ -931,6 +1110,7 @@
             let incomes = getIncomes();
             incomes = incomes.filter(inc => inc.id !== id);
             saveIncomes(incomes);
+            saveBudget(incomes.reduce((sum, i) => sum + i.amount, 0));
             renderIncomeList();
             updateBudgetInfo();
         }
@@ -947,27 +1127,13 @@
                 cancelText: 'Cancel',
                 onConfirm: function() {
                     saveIncomes([]);
+                    saveBudget(0);
                     renderIncomeList();
                     updateBudgetInfo();
                 }
             });
         }
-        function deleteBudget() {
-            if (!getBudget() || parseFloat(getBudget()) <= 0) {
-                showModal('No budget to delete.');
-                return;
-            }
-            showModal('Are you sure you want to delete the budget?', {
-                confirm: true,
-                confirmText: 'Delete Budget',
-                cancelText: 'Cancel',
-                onConfirm: function() {
-                    saveBudget('');
-                    updateBudgetInfo();
-                }
-            });
-        }
-        document.addEventListener('DOMContentLoaded', function() {
+                document.addEventListener('DOMContentLoaded', function() {
             // Set default date for income to today
             const incomeDateInput = document.getElementById('income-date');
             if (incomeDateInput) {
@@ -985,11 +1151,7 @@
             if (deleteAllIncomeBtn) {
                 deleteAllIncomeBtn.addEventListener('click', deleteAllIncome);
             }
-            const deleteBudgetBtn = document.getElementById('delete-budget');
-            if (deleteBudgetBtn) {
-                deleteBudgetBtn.addEventListener('click', deleteBudget);
-            }
-            renderIncomeList();
+                        renderIncomeList();
         });
 
         // Budget logic
@@ -1090,109 +1252,75 @@
             const totalIncome = incomes.reduce((sum, i) => sum + i.amount, 0);
 
             const info = document.getElementById('budget-info');
-            const budgetDisplay = document.getElementById('budget-display');
-            const budgetValue = document.getElementById('budget-value');
-            const budgetForm = document.getElementById('budget-form');
             const budgetHeaderValue = document.getElementById('budget-header-value');
             const budgetHeaderLabel = document.getElementById('budget-header-label');
             const headerIndicators = document.getElementById('header-indicators');
             
-            let available = (budget || totalIncome) - totalExpenses;
-            let dailyAllowance = totalIncome / daysLeft;
+            const effectiveBudget = budget || totalIncome;
+            let available = effectiveBudget - totalExpenses;
+            let dailyAllowance = available / daysLeft;
 
-            if (!budget && totalIncome === 0) {
+            if (effectiveBudget === 0) {
                 info.innerHTML = '<span class="text-gray-700">No monthly budget or income set.</span>';
-                if (budgetValue) budgetValue.className = 'text-lg font-semibold text-green-700';
-                budgetDisplay.style.display = 'none';
-                budgetForm.style.display = '';
                 if (budgetHeaderValue) budgetHeaderValue.textContent = '';
                 if (budgetHeaderLabel) budgetHeaderLabel.textContent = '';
                 if (headerIndicators) headerIndicators.innerHTML = '';
                 return;
             }
 
-            if (budget) {
-                budgetValue.textContent = `Monthly Budget: ${budget.toFixed(2)} DH`;
-                budgetDisplay.style.display = '';
-                budgetForm.style.display = 'none';
-            } else {
-                budgetDisplay.style.display = 'none';
-                budgetForm.style.display = '';
-            }
-
             budgetHeaderValue.textContent = `${dailyAllowance.toFixed(2)} DH`;
             budgetHeaderLabel.textContent = 'TO SPEND PER DAY';
-            budgetHeaderValue.className = 'text-5xl font-extrabold text-green-800 leading-tight';
-            budgetHeaderLabel.className = 'text-lg font-bold text-green-700 tracking-wide';
+            
+            let feedbackText = '';
+            if (dailyAllowance > 0) {
+                feedbackText = `You are on track. You can spend up to <b>${dailyAllowance.toFixed(2)} DH</b> per day for the rest of the month.`;
+                budgetHeaderValue.className = 'text-5xl font-extrabold text-green-800 leading-tight';
+                budgetHeaderLabel.className = 'text-lg font-bold text-green-700 tracking-wide';
+            } else {
+                feedbackText = `You have overspent your budget. You are <b>${Math.abs(available).toFixed(2)} DH</b> over.`;
+                budgetHeaderValue.className = 'text-5xl font-extrabold text-red-700 leading-tight';
+                budgetHeaderLabel.className = 'text-lg font-bold text-red-700 tracking-wide';
+            }
+            info.innerHTML = `<span class='text-gray-600 dark:text-gray-400'>${feedbackText}</span>`;
+
 
             if (headerIndicators) {
                 headerIndicators.innerHTML = '';
                 const badgeClass = 'inline-block bg-gray-400 bg-opacity-60 text-white text-base font-semibold rounded-full px-5 py-2 shadow-sm';
                 headerIndicators.innerHTML =
-                    `<span class="${badgeClass}">Budget: ${(budget || totalIncome).toFixed(2)} DH</span>` +
+                    `<span class="${badgeClass}">Budget: ${effectiveBudget.toFixed(2)} DH</span>` +
                     `<span class="${badgeClass}">Expenses: ${totalExpenses.toFixed(2)} DH</span>` +
                     `<span class="${badgeClass}">Remaining: ${available.toFixed(2)} DH</span>`;
             }
 
             if (window.renderBudgetVsExpensesChart) {
-                window.renderBudgetVsExpensesChart(budget || totalIncome, totalIncome, totalExpenses);
+                window.renderBudgetVsExpensesChart(effectiveBudget, totalIncome, totalExpenses);
             }
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             setupAccordion('toggle-income-budget', 'income-budget-content', 'income-budget-arrow');
-            // Budget form setup
-            const budgetForm = document.getElementById('budget-form');
-            const budgetAmountInput = document.getElementById('budget-amount');
-            const budgetDisplay = document.getElementById('budget-display');
-            const editBudgetBtn = document.getElementById('edit-budget');
-            if (budgetAmountInput) budgetAmountInput.value = getBudget();
             updateBudgetInfo();
-            if (budgetForm) {
-                budgetForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const amount = parseFloat(budgetAmountInput.value);
-                    if (isNaN(amount) || amount <= 0) {
-                        showModal('Please enter a valid budget amount.');
-                        return;
-                    }
-                    saveBudget(amount);
-                    updateBudgetInfo();
-                    showModal('Budget saved!');
-                });
-            }
-            if (editBudgetBtn) {
-                editBudgetBtn.addEventListener('click', function() {
-                    budgetForm.style.display = '';
-                    budgetDisplay.style.display = 'none';
-                    budgetAmountInput.focus();
-                });
-            }
         });
         // Dark mode logic
-        function setDarkMode(enabled) {
-            const body = document.getElementById('main-body');
-            if (enabled) {
-                body.classList.add('dark');
-                localStorage.setItem('darkMode', 'true');
-                document.getElementById('dark-mode-label').textContent = 'Light Mode';
-                document.getElementById('dark-mode-toggle').innerHTML = '<i class="fas fa-sun"></i> <span id="dark-mode-label">Light Mode</span>';
-            } else {
-                body.classList.remove('dark');
-                localStorage.setItem('darkMode', 'false');
-                document.getElementById('dark-mode-label').textContent = 'Dark Mode';
-                document.getElementById('dark-mode-toggle').innerHTML = '<i class="fas fa-moon"></i> <span id="dark-mode-label">Dark Mode</span>';
-            }
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtn = document.getElementById('dark-mode-toggle');
+            const body = document.getElementById('main-body');
+
+            function setDarkMode(enabled) {
+                body.classList.toggle('dark', enabled);
+                localStorage.setItem('darkMode', enabled);
+            }
+
             // Initialize dark mode from localStorage
             const darkModePref = localStorage.getItem('darkMode');
             setDarkMode(darkModePref === 'true');
-            document.getElementById('dark-mode-toggle').addEventListener('click', function() {
-                const isDark = document.getElementById('main-body').classList.contains('dark');
+
+            toggleBtn.addEventListener('click', function() {
+                const isDark = body.classList.contains('dark');
                 setDarkMode(!isDark);
             });
+        });
             // Delete all expenses
             function deleteAllExpenses() {
                 if (expenses.length === 0) {
@@ -1876,7 +2004,6 @@
             window.deleteExpense = deleteExpense;
             // Initial render
             renderExpenses();
-        });
     </script>
 </body>
 </html>
