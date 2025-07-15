@@ -8,9 +8,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .speech-btn.active {
-            animation: pulse 1.5s infinite;
-        }
         
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
@@ -540,13 +537,13 @@
             <div class="flex flex-col items-center w-full">
                 <div id="date-time-indicator" class="text-[#15803d] text-sm font-medium mb-1 mt-2 text-center w-full" style="font-size:1.1rem; letter-spacing:0.01em; line-height:1.2;"></div>
                 <div id="days-left-indicator" class="text-gray-600 text-sm font-medium mb-2 text-center w-full" style="font-size:1.1rem;"></div>
-                <img src="https://iili.io/F07i2fe.png" alt="Logo" style="height:270px;max-width:400px;object-fit:contain;" class="mb-2 mx-auto" />
+                <img src="https://iili.io/F07i2fe.png" alt="Logo" style="height:220px;max-width:320px;object-fit:contain;" class="mb-2 mx-auto" />
                 <span id="budget-header-value" class="text-6xl font-extrabold text-green-800 leading-tight text-center w-full" style="font-size:3.5rem;"> </span>
-                <p class="text-gray-600 text-center mb-2" style="font-size:1.25rem;">Track your expenses with ease</p>
                 <span id="budget-header-label" class="text-xl font-bold text-green-700 tracking-wide uppercase text-center w-full" style="letter-spacing:2px;"> </span>
                 <!-- Indicators Row -->
                 <div id="header-indicators" class="flex flex-row gap-3 mt-4 mb-2 justify-center w-full"></div>
             </div>
+            <p class="text-gray-600 text-center mt-2">Track your expenses with ease</p>
         <!-- Preset Bar for Common Items -->
         <div class="bg-white rounded-xl shadow-lg p-4 mb-8">
             <div id="preset-bar" class="flex flex-wrap gap-2 items-center">
@@ -617,20 +614,20 @@
             }
         }
         </style>
-        <nav id="main-menu" style="display:flex;gap:36px;align-items:center;justify-content:center;padding:18px 0;background:#f3f4f6;box-shadow:0 2px 8px #0001;">
-            <button class="menu-btn" data-section="income-budget-section">
-                <img src="https://iili.io/F0M1FNn.png" alt="Income & Budget">
-            </button>
-            <button class="menu-btn" data-section="expenses-section">
-                <img src="https://iili.io/F0M1BVf.png" alt="Expenses">
-            </button>
-            <button class="menu-btn" data-section="calculator-section">
-                <img src="https://iili.io/F0M13AX.png" alt="Calculator">
-            </button>
-            <button class="menu-btn" data-section="analysis-section">
-                <img src="https://iili.io/F0M1Kts.png" alt="Analysis">
-            </button>
-        </nav>
+<nav id="main-menu" class="flex items-center justify-center gap-9 py-4" style="background: transparent;">
+    <button class="menu-btn" data-section="income-budget-section">
+        <img src="https://iili.io/F0M1FNn.png" alt="Income & Budget" class="w-24 h-24 object-contain transition-all duration-200 ease-out hover:scale-110 hover:-translate-y-1 hover:rotate-[-2deg] active:scale-95 active:translate-y-0.5 active:rotate-[1deg]">
+    </button>
+    <button class="menu-btn" data-section="expenses-section">
+        <img src="https://iili.io/F0M1BVf.png" alt="Expenses" class="w-24 h-24 object-contain transition-all duration-200 ease-out hover:scale-110 hover:-translate-y-1 hover:rotate-[-2deg] active:scale-95 active:translate-y-0.5 active:rotate-[1deg]">
+    </button>
+    <button class="menu-btn" data-section="calculator-section">
+        <img src="https://iili.io/F0M13AX.png" alt="Calculator" class="w-24 h-24 object-contain transition-all duration-200 ease-out hover:scale-110 hover:-translate-y-1 hover:rotate-[-2deg] active:scale-95 active:translate-y-0.5 active:rotate-[1deg]">
+    </button>
+    <button class="menu-btn" data-section="analysis-section">
+        <img src="https://iili.io/F0M1Kts.png" alt="Analysis" class="w-24 h-24 object-contain transition-all duration-200 ease-out hover:scale-110 hover:-translate-y-1 hover:rotate-[-2deg] active:scale-95 active:translate-y-0.5 active:rotate-[1deg]">
+    </button>
+</nav>
         <!-- Income & Budget Section (Menu Controlled) -->
         <div id="income-budget-section" class="bg-white rounded-xl shadow-lg p-6 mb-8 section-content">
             <div id="income-budget-content">
@@ -672,9 +669,6 @@
                         <label for="expense-name" class="block text-sm font-medium text-black mb-1">Expense Name</label>
                         <div class="relative">
                             <input type="text" id="expense-name" placeholder="e.g. Groceries" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                            <button id="speech-btn" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-100 hover:bg-gray-200 text-gray-700 p-2 rounded-full speech-btn">
-                                <i class="fas fa-microphone"></i>
-                            </button>
                         </div>
                     </div>
                     <div class="flex-1">
@@ -743,9 +737,6 @@
                         <button id="delete-all" class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg flex items-center gap-2 shadow-sm">
                             <i class="fas fa-trash"></i> Delete All
                         </button>
-                        <button id="sync-all-data" class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg flex items-center gap-2 shadow-sm">
-                            <i class="fas fa-sync-alt"></i> Sync All Data
-                        </button>
                     </div>
                 </div>
             </div>
@@ -758,33 +749,23 @@
                 <div class="flex flex-col items-center gap-4">
                     <input id="calc-display" type="text" class="w-full text-2xl text-right px-4 py-2 border border-gray-300 rounded-lg mb-2 bg-gray-50" readonly />
                     <div class="grid grid-cols-4 gap-2 w-full max-w-xs">
-                      <!-- First row: 3 empty cells, yellow circular backspace button -->
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <button class="calc-btn bg-yellow-400 hover:bg-yellow-500 text-white rounded-full aspect-square flex items-center justify-center text-xl font-bold" data-value="←">←</button>
-                      <!-- 7, 8, 9, ÷ -->
-                      <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg aspect-square text-xl font-bold" data-value="7">7</button>
-                      <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg aspect-square text-xl font-bold" data-value="8">8</button>
-                      <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg aspect-square text-xl font-bold" data-value="9">9</button>
-                      <button class="calc-btn bg-indigo-400 hover:bg-indigo-500 text-white rounded-lg aspect-square text-xl font-bold" data-value="/">÷</button>
-                      <!-- 4, 5, 6, × -->
-                      <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg aspect-square text-xl font-bold" data-value="4">4</button>
-                      <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg aspect-square text-xl font-bold" data-value="5">5</button>
-                      <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg aspect-square text-xl font-bold" data-value="6">6</button>
-                      <button class="calc-btn bg-indigo-400 hover:bg-indigo-500 text-white rounded-lg aspect-square text-xl font-bold" data-value="*">×</button>
-                      <!-- 1, 2, 3, − -->
-                      <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg aspect-square text-xl font-bold" data-value="1">1</button>
-                      <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg aspect-square text-xl font-bold" data-value="2">2</button>
-                      <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg aspect-square text-xl font-bold" data-value="3">3</button>
-                      <button class="calc-btn bg-indigo-400 hover:bg-indigo-500 text-white rounded-lg aspect-square text-xl font-bold" data-value="-">−</button>
-                      <!-- ., 0, C, + -->
-                      <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg aspect-square text-xl font-bold" data-value=".">.</button>
-                      <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg aspect-square text-xl font-bold" data-value="0">0</button>
-                      <button class="calc-btn bg-red-400 hover:bg-red-500 text-white rounded-lg aspect-square text-xl font-bold" data-value="C">C</button>
-                      <button class="calc-btn bg-indigo-400 hover:bg-indigo-500 text-white rounded-lg aspect-square text-xl font-bold" data-value="+">+</button>
-                      <!-- = button, full width -->
-                      <button class="calc-btn col-span-4 bg-green-500 hover:bg-green-600 text-white rounded-lg py-3 text-xl font-bold" data-value="=">=</button>
+                        <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg py-3 text-xl font-bold" data-value="7">7</button>
+                        <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg py-3 text-xl font-bold" data-value="8">8</button>
+                        <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg py-3 text-xl font-bold" data-value="9">9</button>
+                        <button class="calc-btn bg-indigo-400 hover:bg-indigo-500 text-white rounded-lg py-3 text-xl font-bold" data-value="/">÷</button>
+                        <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg py-3 text-xl font-bold" data-value="4">4</button>
+                        <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg py-3 text-xl font-bold" data-value="5">5</button>
+                        <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg py-3 text-xl font-bold" data-value="6">6</button>
+                        <button class="calc-btn bg-indigo-400 hover:bg-indigo-500 text-white rounded-lg py-3 text-xl font-bold" data-value="*">×</button>
+                        <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg py-3 text-xl font-bold" data-value="1">1</button>
+                        <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg py-3 text-xl font-bold" data-value="2">2</button>
+                        <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg py-3 text-xl font-bold" data-value="3">3</button>
+                        <button class="calc-btn bg-indigo-400 hover:bg-indigo-500 text-white rounded-lg py-3 text-xl font-bold" data-value="-">−</button>
+                        <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg py-3 text-xl font-bold" data-value="0">0</button>
+                        <button class="calc-btn bg-gray-200 hover:bg-gray-300 rounded-lg py-3 text-xl font-bold" data-value=".">.</button>
+                        <button class="calc-btn bg-red-400 hover:bg-red-500 text-white rounded-lg py-3 text-xl font-bold" data-value="C">C</button>
+                        <button class="calc-btn bg-indigo-400 hover:bg-indigo-500 text-white rounded-lg py-3 text-xl font-bold" data-value="+">+</button>
+                        <button class="calc-btn col-span-4 bg-green-500 hover:bg-green-600 text-white rounded-lg py-3 text-xl font-bold" data-value="=">=</button>
                     </div>
                 </div>
             </div>
@@ -805,7 +786,7 @@
             </div>
             <div class="grid md:grid-cols-2 gap-2 w-full max-w-3xl mx-auto" style="justify-content:center;">
                 <div class="flex flex-col items-center w-full max-w-[350px] mx-auto">
-                    <h3 class="font-semibold text-green-700 mb-1 text-sm">Spending Over Time</h3>
+                    <h3 class="font-semibold text-green-700 mb-1 text-sm">Income Over Time</h3>
                     <canvas id="incomeOverTimeChart" height="120" width="320" style="display:block;max-width:100%;margin:0 auto;"></canvas>
                 </div>
                 <div class="flex flex-col items-center w-full max-w-[350px] mx-auto">
@@ -926,8 +907,6 @@
                 if (val === 'C') {
                     calcValue = '';
                     lastResult = '';
-                } else if (val === '←') {
-                    calcValue = calcValue.slice(0, -1);
                 } else if (val === '=') {
                     try {
                         // Only allow numbers and operators
@@ -1353,8 +1332,6 @@
 
             document.getElementById('delete-all').addEventListener('click', deleteAllExpenses);
 
-            document.getElementById('sync-all-data').addEventListener('click', syncAllDataToGoogleSheets);
-
             // Import expenses from CSV
             function importFromCSV(file) {
                 const reader = new FileReader();
@@ -1496,56 +1473,10 @@
             const expensesContainer = document.getElementById('expenses-container');
             const noExpensesElement = document.getElementById('no-expenses');
             const totalAmountElement = document.getElementById('total-amount');
-            const speechBtn = document.getElementById('speech-btn');
 
             setTodayDate();
             expenseDateInput.readOnly = true;
-            
-            // Speech recognition setup
-            let recognition;
-            try {
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                recognition = new SpeechRecognition();
-                recognition.continuous = false;
-                recognition.interimResults = false;
-                
-                recognition.onstart = function() {
-                    speechBtn.classList.add('active');
-                    speechBtn.innerHTML = '<i class="fas fa-microphone-slash"></i>';
-                };
-                
-                recognition.onend = function() {
-                    speechBtn.classList.remove('active');
-                    speechBtn.innerHTML = '<i class="fas fa-microphone"></i>';
-                };
-                
-                recognition.onresult = function(event) {
-                    const transcript = event.results[0][0].transcript;
-                    expenseNameInput.value = transcript;
-                };
-                
-                recognition.onerror = function(event) {
-                    console.error('Speech recognition error', event.error);
-                    showModal('Speech recognition error: ' + event.error);
-                };
-                
-                speechBtn.addEventListener('click', function() {
-                    try {
-                        if (speechBtn.classList.contains('active')) {
-                            recognition.stop();
-                        } else {
-                            recognition.start();
-                        }
-                    } catch (e) {
-                        showModal('Speech recognition not supported or blocked by browser');
-                        console.error(e);
-                    }
-                });
-            } catch (e) {
-                speechBtn.style.display = 'none';
-                console.warn('Speech recognition not supported', e);
-            }
-            
+  
             // Add expense function
             function addExpense() {
                 const name = expenseNameInput.value.trim();
@@ -1750,13 +1681,16 @@
                     ];
                     const dateTotal = expenses.reduce((sum, expense) => sum + expense.amount, 0).toFixed(2);
                     html += `
-                        <div class="expense-date-group bg-gray-50 rounded-lg mb-6 overflow-hidden fade-in">
-                            <div class="bg-indigo-50 px-4 py-3 border-b border-indigo-100 flex justify-between items-center">
-                                <h3 class="font-medium text-black">${formatDate(date)}</h3>
-                                <span class="font-semibold text-black">${dateTotal} DH</span>
+                        <div class="expense-date-group bg-gray-50 rounded-lg mb-6 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 fade-in">
+                            <div class="bg-indigo-50 px-4 py-3 border-b border-indigo-100">
+                                <div class="flex justify-between items-center">
+                                    <h3 class="font-medium text-black">${formatDate(date)}</h3>
+                                    <span class="font-semibold text-black bg-white px-3 py-1 rounded-full shadow-sm">${dateTotal} DH</span>
+                                </div>
                             </div>
                             <div class="divide-y divide-gray-200">
                                 ${expenses.map(expense => {
+                                    // Fallback logic: if type is missing, try to infer from name or desc
                                     let typeValue = expense.type || '';
                                     let typeObj = null;
                                     if (typeValue) {
@@ -1773,22 +1707,36 @@
                                         typeObj = { label: 'Autre', value: '', color: '#eee' };
                                     }
                                     return `
-                                    <div class="px-4 py-3 flex justify-between items-center fade-in">
-                                        <div class="flex items-center gap-2">
-                                            <span class="inline-block w-4 h-4 rounded-full border" style="background:${typeObj.color};border-color:${typeObj.color}"></span>
-                                            <span class="font-medium text-black">${expense.name}</span>
-                                            ${expense.desc ? `<span class='text-xs text-gray-400 ml-2'>${expense.desc}</span>` : ''}
-                                            <span class="text-xs px-2 py-1 rounded" style="background:${typeObj.color};color:${typeObj.color==='#444'||typeObj.color==='#4B3F2F'?'#fff':'#222'};margin-left:4px;">${typeObj.label}</span>
-                                            ${typeValue ? `<span class="text-xs text-gray-400 ml-2">(${typeValue})</span>` : ''}
-                                        </div>
-                                        <div class="flex items-center gap-4">
-                                            <span class="font-medium text-black">${expense.amount.toFixed(2)} DH</span>
-                                            <button onclick="showEditExpensePopup(${expense.id})" class="text-blue-500 hover:text-blue-700 ml-1" title="Edit expense">
-                                                <i class="fas fa-pen"></i>
-                                            </button>
-                                            <button onclick="deleteExpense(${expense.id})" class="text-red-500 hover:text-red-700" title="Delete expense">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
+                                    <div class="p-4 hover:bg-gray-100 transition-colors duration-200">
+                                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                                            <div class="flex items-center gap-3 flex-1 min-w-0">
+                                                <div class="flex-shrink-0">
+                                                    <span class="inline-block w-3 h-3 rounded-full" style="background:${typeObj.color};"></span>
+                                                </div>
+                                                <div class="flex flex-col sm:flex-row sm:items-center gap-2 min-w-0 flex-1">
+                                                    <span class="font-medium text-black truncate">${expense.name}</span>
+                                                    ${expense.desc ? `
+                                                        <span class="text-xs text-gray-500 truncate">${expense.desc}</span>
+                                                    ` : ''}
+                                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium" 
+                                                          style="background:${typeObj.color}25;color:${typeObj.color==='#444'||typeObj.color==='#4B3F2F'?'#666':'currentColor'}">
+                                                        ${typeObj.label}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-4 ml-auto">
+                                                <span class="font-medium text-black whitespace-nowrap">${expense.amount.toFixed(2)} DH</span>
+                                                <div class="flex items-center gap-2">
+                                                    <button onclick="editExpense(${expense.id})" 
+                                                            class="p-1.5 text-blue-500 hover:text-blue-700 hover:bg-blue-50 rounded-full transition-colors">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button onclick="deleteExpense(${expense.id})" 
+                                                            class="p-1.5 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-full transition-colors">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     `;
@@ -1796,82 +1744,6 @@
                             </div>
                         </div>
                     `;
-            // Edit Expense Popup
-            window.showEditExpensePopup = function(expenseId) {
-                const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
-                const idx = expenses.findIndex(e => e.id === expenseId);
-                if (idx === -1) return;
-                const exp = expenses[idx];
-                let html = `
-                <div class='mb-4 text-left'>
-                    <b class='text-lg' style='color:white;'>Edit Expense</b><br><br>
-                    <div class='flex flex-col gap-3'>
-                        <div>
-                            <b style='color:white;'>Name:</b>
-                            <input id='edit-expense-name' type='text' value='${exp.name}' class='border px-2 py-1 rounded w-full' style='color:black;background:white;' required />
-                        </div>
-                        <div>
-                            <b style='color:white;'>Description:</b>
-                            <input id='edit-expense-desc' type='text' value='${exp.desc || ''}' class='border px-2 py-1 rounded w-full' style='color:black;background:white;' />
-                        </div>
-                        <div>
-                            <b style='color:white;'>Category:</b>
-                            <select id='edit-expense-type' class='border px-2 py-1 rounded w-full' style='color:black;background:white;'>
-                                <option value="">Select type...</option>
-                                <option value="alimentation" ${exp.type === 'alimentation' ? 'selected' : ''}>Alimentation</option>
-                                <option value="cadeaux" ${exp.type === 'cadeaux' ? 'selected' : ''}>Cadeaux</option>
-                                <option value="sante" ${exp.type === 'sante' ? 'selected' : ''}>Santé/médecine</option>
-                                <option value="dates" ${exp.type === 'dates' ? 'selected' : ''}>dates</option>
-                                <option value="transports" ${exp.type === 'transports' ? 'selected' : ''}>Transports</option>
-                                <option value="depenses_pers" ${exp.type === 'depenses_pers' ? 'selected' : ''}>Dépenses personnel</option>
-                                <option value="accounting_error" ${exp.type === 'accounting_error' ? 'selected' : ''}>Accounting error</option>
-                                <option value="utilities" ${exp.type === 'utilities' ? 'selected' : ''}>Électricité, eau, gaz...</option>
-                                <option value="voyage" ${exp.type === 'voyage' ? 'selected' : ''}>Voyage</option>
-                                <option value="dettes" ${exp.type === 'dettes' ? 'selected' : ''}>Dettes</option>
-                                <option value="lent" ${exp.type === 'lent' ? 'selected' : ''}>Lent</option>
-                                <option value="given" ${exp.type === 'given' ? 'selected' : ''}>Given</option>
-                                <option value="savings" ${exp.type === 'savings' ? 'selected' : ''}>Savings</option>
-                                <option value="waste" ${exp.type === 'waste' ? 'selected' : ''}>Waste</option>
-                                <option value="groceries" ${exp.type === 'groceries' ? 'selected' : ''}>Groceries</option>
-                                <option value="habitation" ${exp.type === 'habitation' ? 'selected' : ''}>Habitation</option>
-                                <option value="transports_bus" ${exp.type === 'transports_bus' ? 'selected' : ''}>Transports (Bus)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <b style='color:white;'>Amount (DH):</b>
-                            <input id='edit-expense-amount' type='number' value='${exp.amount}' class='border px-2 py-1 rounded w-full' style='color:black;background:white;' min='0' required />
-                        </div>
-                        <div>
-                            <b style='color:white;'>Date:</b>
-                            <input id='edit-expense-date' type='date' value='${exp.date}' class='border px-2 py-1 rounded w-full' style='color:black;background:white;' required />
-                        </div>
-                    </div>
-                </div>
-                <form id='edit-expense-form' class='flex gap-2 items-end justify-center'>
-                    <button type='submit' class='bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg'>Save Changes</button>
-                </form>
-                `;
-                showModal(html, {
-                    closeText: 'Cancel',
-                    onClose: renderExpenses
-                });
-                setTimeout(() => {
-                    document.getElementById('edit-expense-form').onsubmit = function(e) {
-                        e.preventDefault();
-                        const name = document.getElementById('edit-expense-name').value.trim();
-                        const desc = document.getElementById('edit-expense-desc').value.trim();
-                        const type = document.getElementById('edit-expense-type').value;
-                        const amount = parseFloat(document.getElementById('edit-expense-amount').value);
-                        const date = document.getElementById('edit-expense-date').value;
-                        if (!name || isNaN(amount) || amount < 0 || !date) return;
-                        const updated = JSON.parse(localStorage.getItem('expenses')) || [];
-                        updated[idx] = { ...updated[idx], name, desc, type, amount, date };
-                        localStorage.setItem('expenses', JSON.stringify(updated));
-                        renderExpenses();
-                        document.querySelector('#modal-popup .bg-white, #modal-popup .dark\\:bg-gray-800').parentNode.classList.add('hidden');
-                    };
-                }, 0);
-            };
                 });
                 expensesContainer.innerHTML = html;
                 totalAmountElement.textContent = calculateTotal();
@@ -1926,6 +1798,106 @@
             });
             
             // Make deleteExpense available globally for the inline onclick
+            // --- Edit expense function
+            function editExpense(id) {
+                const expense = expenses.find(e => e.id === id);
+                if (!expense) return;
+
+                const modalContent = `
+                    <div class="text-left">
+                        <h3 class="text-xl font-bold mb-4 text-center text-white">Edit Expense</h3>
+                        <form id="edit-expense-form" class="space-y-4">
+                            <div class="space-y-4 divide-y divide-gray-200">
+                                <div class="pt-4">
+                                    <label class="block text-sm font-medium text-white mb-1">Name</label>
+                                    <input type="text" id="edit-expense-name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 text-black bg-white" value="${expense.name}" required>
+                                </div>
+                                
+                                <div class="pt-4">
+                                    <label class="block text-sm font-medium text-white mb-1">Description</label>
+                                    <input type="text" id="edit-expense-desc" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 text-black bg-white" value="${expense.desc || ''}">
+                                </div>
+                                
+                                <div class="pt-4">
+                                    <label class="block text-sm font-medium text-white mb-1">Amount (DH)</label>
+                                    <input type="number" id="edit-expense-amount" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 text-black bg-white" value="${expense.amount}" step="0.01" min="0.01" required>
+                                </div>
+                                
+                                <div class="pt-4">
+                                    <label class="block text-sm font-medium text-white mb-1">Date</label>
+                                    <input type="date" id="edit-expense-date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 text-black bg-white" value="${expense.date}" required>
+                                </div>
+                                
+                                <div class="pt-4">
+                                    <label class="block text-sm font-medium text-white mb-1">Category</label>
+                                    <select id="edit-expense-type" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 text-black bg-white">
+                                        ${document.getElementById('expense-type').innerHTML}
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-end space-x-3 pt-6">
+                                <button type="button" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300" onclick="document.querySelector('#modal-popup').classList.add('hidden')">
+                                    Cancel
+                                </button>
+                                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                `;
+
+                showModal(modalContent);
+                
+                // Set the current type in the dropdown
+                document.getElementById('edit-expense-type').value = expense.type || '';
+
+                // Handle form submission
+                document.getElementById('edit-expense-form').onsubmit = function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('edit-expense-name').value.trim();
+                    const desc = document.getElementById('edit-expense-desc').value.trim();
+                    const amount = parseFloat(document.getElementById('edit-expense-amount').value);
+                    const date = document.getElementById('edit-expense-date').value;
+                    const type = document.getElementById('edit-expense-type').value;
+
+                    // Validation
+                    if (!name) {
+                        showModal('Please enter a name for the expense');
+                        return;
+                    }
+                    if (isNaN(amount) || amount <= 0) {
+                        showModal('Please enter a valid positive amount');
+                        return;
+                    }
+                    if (!date) {
+                        showModal('Please enter a valid date');
+                        return;
+                    }
+
+                    // Update expense
+                    const expenseIndex = expenses.findIndex(e => e.id === id);
+                    if (expenseIndex !== -1) {
+                        expenses[expenseIndex] = {
+                            ...expenses[expenseIndex],
+                            name,
+                            desc,
+                            amount,
+                            date,
+                            type,
+                            lastModified: new Date().toISOString()
+                        };
+                        saveExpenses();
+                        renderExpenses();
+                        document.querySelector('#modal-popup').classList.add('hidden');
+                    }
+                };
+            }
+
+            // Make editExpense available globally
+            window.editExpense = editExpense;
             // --- Chart.js Expense Graphs ---
             function renderExpenseCharts() {
                 const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
@@ -1947,14 +1919,14 @@
                 });
                 const catLabels = Object.keys(catMap);
                 const catData = Object.values(catMap);
-                // --- Spending Over Time (by date) ---
-                const spendingDates = {};
-                expenses.forEach(exp => {
-                    const d = exp.date;
-                    if (d) spendingDates[d] = (spendingDates[d]||0) + Number(exp.amount)||0;
+                // --- Income Over Time (by date) ---
+                const incomeDates = {};
+                incomes.forEach(inc => {
+                    const d = inc.date;
+                    if (d) incomeDates[d] = (incomeDates[d]||0) + Number(inc.amount)||0;
                 });
-                const sortedSpendingDates = Object.keys(spendingDates).sort();
-                const spendingAmounts = sortedSpendingDates.map(d => spendingDates[d]);
+                const sortedIncomeDates = Object.keys(incomeDates).sort();
+                const incomeAmounts = sortedIncomeDates.map(d => incomeDates[d]);
                 // --- Budget vs Expenses (This Week) ---
                 const now = new Date();
                 const startOfWeek = new Date(now);
@@ -1967,11 +1939,16 @@
                     return expDate >= startOfWeek && expDate < endOfWeek;
                 });
                 const totalWeeklyExpenses = weeklyExpenses.reduce((total, expense) => total + expense.amount, 0);
+                const weeklyIncomes = incomes.filter(inc => {
+                    const incDate = new Date(inc.date);
+                    return incDate >= startOfWeek && incDate < endOfWeek;
+                });
+                const totalWeeklyIncome = weeklyIncomes.reduce((sum, i) => sum + i.amount, 0);
                 const budget = parseFloat(localStorage.getItem('budget')) || 0;
                 // Destroy old charts if exist
                 if(window.expensesOverTimeChartObj) window.expensesOverTimeChartObj.destroy();
                 if(window.categoryBreakdownChartObj) window.categoryBreakdownChartObj.destroy();
-                if(window.spendingOverTimeChartObj) window.spendingOverTimeChartObj.destroy();
+                if(window.incomeOverTimeChartObj) window.incomeOverTimeChartObj.destroy();
                 if(window.budgetVsExpensesChartObj) window.budgetVsExpensesChartObj.destroy();
                 // Only render if canvas exists
                 const ctx1Elem = document.getElementById('expensesOverTimeChart');
@@ -2016,15 +1993,15 @@
                 }
                 if (ctx3Elem) {
                     const ctx3 = ctx3Elem.getContext('2d');
-                    window.spendingOverTimeChartObj = new Chart(ctx3, {
+                    window.incomeOverTimeChartObj = new Chart(ctx3, {
                         type: 'line',
                         data: {
-                            labels: sortedSpendingDates,
+                            labels: sortedIncomeDates,
                             datasets: [{
-                                label: 'Spending (DH)',
-                                data: spendingAmounts,
-                                borderColor: '#e11d48',
-                                backgroundColor: 'rgba(225,29,72,0.1)',
+                                label: 'Income (DH)',
+                                data: incomeAmounts,
+                                borderColor: '#059669',
+                                backgroundColor: 'rgba(5,150,105,0.1)',
                                 fill: true,
                                 tension: 0.3
                             }]
@@ -2040,16 +2017,18 @@
                     window.budgetVsExpensesChartObj = new Chart(ctx4, {
                         type: 'bar',
                         data: {
-                            labels: ['Budget', 'Expenses'],
+                            labels: ['Budget', 'Income', 'Expenses'],
                             datasets: [{
                                 label: 'Amount (DH)',
-                                data: [budget, totalWeeklyExpenses],
+                                data: [budget, totalWeeklyIncome, totalWeeklyExpenses],
                                 backgroundColor: [
                                     'rgba(16, 185, 129, 0.7)', // Budget - green
+                                    'rgba(59, 130, 246, 0.7)', // Income - blue
                                     'rgba(239, 68, 68, 0.7)'   // Expenses - red
                                 ],
                                 borderColor: [
                                     'rgba(16, 185, 129, 1)',
+                                    'rgba(59, 130, 246, 1)',
                                     'rgba(239, 68, 68, 1)'
                                 ],
                                 borderWidth: 2,
